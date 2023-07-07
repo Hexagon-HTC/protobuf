@@ -183,6 +183,10 @@ class SingularPrimitive final : public FieldGeneratorBase {
     )cc");
   }
 
+  void GenerateOneofCopyConstruct(io::Printer* p) const override {
+    p->Emit("$field$ = rhs.$field$;\n");
+  }
+
   void GenerateAccessorDeclarations(io::Printer* p) const override;
   void GenerateInlineAccessorDefinitions(io::Printer* p) const override;
   void GenerateSerializeWithCachedSizesToArray(io::Printer* p) const override;
@@ -365,6 +369,10 @@ class RepeatedPrimitive final : public FieldGeneratorBase {
       decltype($field_$){from.$field_$},
     )cc");
     GenerateCacheSizeInitializer(p);
+  }
+
+  void GenerateOneofCopyConstruct(io::Printer* p) const override {
+    p->Emit("new ($field$) decltype($field$){arena, rhs.$field$});\n");
   }
 
   void GeneratePrivateMembers(io::Printer* p) const override;

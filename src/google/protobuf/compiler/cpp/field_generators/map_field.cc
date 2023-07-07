@@ -126,6 +126,23 @@ class Map : public FieldGeneratorBase {
     )cc");
   }
 
+  void GenerateMemberConstructor(io::Printer* p) const override {
+    p->Emit("$name$_{visibility, arena}");
+  }
+
+  void GenerateMemberCopyConstructor(io::Printer* p) const override {
+    p->Emit("$name$_{visibility, arena, rhs.$name$_}");
+  }
+
+  void GenerateOneofCopyConstruct(io::Printer* p) const override {
+    p->Emit(
+        "new (&$field$) decltype($field$){visibility, arena, rhs.$field$};\n");
+  }
+
+  void GenerateMemberConstexprConstructor(io::Printer* p) const override {
+    p->Emit("$name$_{}");
+  }
+
   void GenerateConstexprAggregateInitializer(io::Printer* p) const override {
     p->Emit(R"cc(
       /* decltype($field_$) */ {},

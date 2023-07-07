@@ -136,6 +136,8 @@ class SingularMessage : public FieldGeneratorBase {
   void GenerateSerializeWithCachedSizesToArray(io::Printer* p) const override;
   void GenerateByteSize(io::Printer* p) const override;
   void GenerateIsInitialized(io::Printer* p) const override;
+  void GenerateMemberCopyConstructor(io::Printer* p) const override;
+  void GenerateOneofCopyConstruct(io::Printer* p) const override;
   void GenerateConstexprAggregateInitializer(io::Printer* p) const override;
   void GenerateAggregateInitializer(io::Printer* p) const override;
   void GenerateCopyAggregateInitializer(io::Printer* p) const override;
@@ -506,6 +508,20 @@ void SingularMessage::GenerateIsInitialized(io::Printer* p) const {
   }
 }
 
+void SingularMessage::GenerateMemberCopyConstructor(io::Printer* p) const {
+  p->Emit({{"field_classname", FieldMessageTypeName(descriptor_, options_)}},
+          "$name$_{::$proto_ns$::Arena::CreateMessage<$field_classname$>("
+          "arena, *rhs.$name$_)}");
+}
+
+void SingularMessage::GenerateOneofCopyConstruct(io::Printer* p) const {
+  p->Emit({{"field_classname", FieldMessageTypeName(descriptor_, options_)}},
+          R"cc(
+            $field$ = ::$proto_ns$::Arena::CreateMessage<$field_classname$>(
+                arena, *rhs.$field$);
+          )cc");
+}
+
 void SingularMessage::GenerateConstexprAggregateInitializer(
     io::Printer* p) const {
   p->Emit(R"cc(
@@ -740,6 +756,11 @@ class RepeatedMessage : public FieldGeneratorBase {
   void GenerateSerializeWithCachedSizesToArray(io::Printer* p) const override;
   void GenerateByteSize(io::Printer* p) const override;
   void GenerateIsInitialized(io::Printer* p) const override;
+
+  void GenerateOneofCopyConstruct(io::Printer* p) const override {
+    p->Emit(
+        "new ($field$) decltype($field$){/* Message */arena, rhs.$field$});\n");
+  }
 
  private:
   const FieldDescriptor* field_;

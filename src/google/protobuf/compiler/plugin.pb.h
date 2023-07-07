@@ -135,6 +135,9 @@ class PROTOC_EXPORT Version final :
   explicit PROTOBUF_CONSTEXPR Version(::google::protobuf::internal::ConstantInitialized);
 
   Version(const Version& from);
+  #ifdef PROTOBUF_NEW_CONSTRUCTORS
+  Version(::google::protobuf::Arena*, const Version& rhs);
+  #endif
   Version(Version&& from) noexcept
     : Version() {
     *this = ::std::move(from);
@@ -322,6 +325,12 @@ class PROTOC_EXPORT Version final :
   typedef void InternalArenaConstructable_;
   typedef void DestructorSkippable_;
   struct Impl_ {
+  #ifdef PROTOBUF_NEW_CONSTRUCTORS
+    inline explicit constexpr Impl_(::google::protobuf::internal::ConstantInitialized);
+    inline Impl_(::google::protobuf::internal::InternalVisibility, ::google::protobuf::Arena*);
+    inline Impl_(::google::protobuf::internal::InternalVisibility, ::google::protobuf::Arena*, const Impl_&);
+    inline ~Impl_();
+  #endif  // PROTOBUF_NEW_CONSTRUCTORS
     ::google::protobuf::internal::HasBits<1> _has_bits_;
     mutable ::google::protobuf::internal::CachedSize _cached_size_;
     ::google::protobuf::internal::ArenaStringPtr suffix_;
@@ -343,6 +352,9 @@ class PROTOC_EXPORT CodeGeneratorRequest final :
   explicit PROTOBUF_CONSTEXPR CodeGeneratorRequest(::google::protobuf::internal::ConstantInitialized);
 
   CodeGeneratorRequest(const CodeGeneratorRequest& from);
+  #ifdef PROTOBUF_NEW_CONSTRUCTORS
+  CodeGeneratorRequest(::google::protobuf::Arena*, const CodeGeneratorRequest& rhs);
+  #endif
   CodeGeneratorRequest(CodeGeneratorRequest&& from) noexcept
     : CodeGeneratorRequest() {
     *this = ::std::move(from);
@@ -577,6 +589,12 @@ class PROTOC_EXPORT CodeGeneratorRequest final :
   typedef void InternalArenaConstructable_;
   typedef void DestructorSkippable_;
   struct Impl_ {
+  #ifdef PROTOBUF_NEW_CONSTRUCTORS
+    inline explicit constexpr Impl_(::google::protobuf::internal::ConstantInitialized);
+    inline Impl_(::google::protobuf::internal::InternalVisibility, ::google::protobuf::Arena*);
+    inline Impl_(::google::protobuf::internal::InternalVisibility, ::google::protobuf::Arena*, const Impl_&);
+    inline ~Impl_();
+  #endif  // PROTOBUF_NEW_CONSTRUCTORS
     ::google::protobuf::internal::HasBits<1> _has_bits_;
     mutable ::google::protobuf::internal::CachedSize _cached_size_;
     ::google::protobuf::RepeatedPtrField<std::string> file_to_generate_;
@@ -599,6 +617,9 @@ class PROTOC_EXPORT CodeGeneratorResponse_File final :
   explicit PROTOBUF_CONSTEXPR CodeGeneratorResponse_File(::google::protobuf::internal::ConstantInitialized);
 
   CodeGeneratorResponse_File(const CodeGeneratorResponse_File& from);
+  #ifdef PROTOBUF_NEW_CONSTRUCTORS
+  CodeGeneratorResponse_File(::google::protobuf::Arena*, const CodeGeneratorResponse_File& rhs);
+  #endif
   CodeGeneratorResponse_File(CodeGeneratorResponse_File&& from) noexcept
     : CodeGeneratorResponse_File() {
     *this = ::std::move(from);
@@ -802,6 +823,12 @@ class PROTOC_EXPORT CodeGeneratorResponse_File final :
   typedef void InternalArenaConstructable_;
   typedef void DestructorSkippable_;
   struct Impl_ {
+  #ifdef PROTOBUF_NEW_CONSTRUCTORS
+    inline explicit constexpr Impl_(::google::protobuf::internal::ConstantInitialized);
+    inline Impl_(::google::protobuf::internal::InternalVisibility, ::google::protobuf::Arena*);
+    inline Impl_(::google::protobuf::internal::InternalVisibility, ::google::protobuf::Arena*, const Impl_&);
+    inline ~Impl_();
+  #endif  // PROTOBUF_NEW_CONSTRUCTORS
     ::google::protobuf::internal::HasBits<1> _has_bits_;
     mutable ::google::protobuf::internal::CachedSize _cached_size_;
     ::google::protobuf::internal::ArenaStringPtr name_;
@@ -823,6 +850,9 @@ class PROTOC_EXPORT CodeGeneratorResponse final :
   explicit PROTOBUF_CONSTEXPR CodeGeneratorResponse(::google::protobuf::internal::ConstantInitialized);
 
   CodeGeneratorResponse(const CodeGeneratorResponse& from);
+  #ifdef PROTOBUF_NEW_CONSTRUCTORS
+  CodeGeneratorResponse(::google::protobuf::Arena*, const CodeGeneratorResponse& rhs);
+  #endif
   CodeGeneratorResponse(CodeGeneratorResponse&& from) noexcept
     : CodeGeneratorResponse() {
     *this = ::std::move(from);
@@ -1028,6 +1058,12 @@ class PROTOC_EXPORT CodeGeneratorResponse final :
   typedef void InternalArenaConstructable_;
   typedef void DestructorSkippable_;
   struct Impl_ {
+  #ifdef PROTOBUF_NEW_CONSTRUCTORS
+    inline explicit constexpr Impl_(::google::protobuf::internal::ConstantInitialized);
+    inline Impl_(::google::protobuf::internal::InternalVisibility, ::google::protobuf::Arena*);
+    inline Impl_(::google::protobuf::internal::InternalVisibility, ::google::protobuf::Arena*, const Impl_&);
+    inline ~Impl_();
+  #endif  // PROTOBUF_NEW_CONSTRUCTORS
     ::google::protobuf::internal::HasBits<1> _has_bits_;
     mutable ::google::protobuf::internal::CachedSize _cached_size_;
     ::google::protobuf::RepeatedPtrField< ::google::protobuf::compiler::CodeGeneratorResponse_File > file_;
